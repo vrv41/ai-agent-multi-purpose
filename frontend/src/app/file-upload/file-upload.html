@@ -1,0 +1,58 @@
+
+<div class="p-4">
+  <div class="border-2 border-dashed border-blue-200 bg-blue-50 rounded-xl p-8 text-center mt-3"
+  (drop)="onDrop($event)"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+>
+  <input
+    type="file"
+    id="fileInput"
+    accept=".pdf,.csv"
+    class="hidden"
+    (change)="onFileChange($event)"
+  />
+  <label for="fileInput" class="cursor-pointer inline-flex flex-col items-center justify-center space-y-2">
+    <div class="bg-blue-100 rounded-full p-4">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#2b5ae9" viewBox="0 0 256 256"><path d="M216.49,79.52l-56-56A12,12,0,0,0,152,20H56A20,20,0,0,0,36,40V216a20,20,0,0,0,20,20H200a20,20,0,0,0,20-20V88A12,12,0,0,0,216.49,79.52ZM183,80H160V57ZM60,212V44h76V92a12,12,0,0,0,12,12h48V212Zm100.49-72.49a12,12,0,0,1-17,17L140,153v31a12,12,0,0,1-24,0V153l-3.51,3.52a12,12,0,0,1-17-17l24-24a12,12,0,0,1,17,0Z"></path></svg>
+    </div>
+    <span class="text-blue-600 text-sm font-medium">Click to upload or drag a PDF/CSV</span>
+  </label>
+
+  <div *ngIf="selectedFile" class="mt-4 flex items-center justify-center gap-2 text-green-600 font-medium">
+    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 5.707 8.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"
+        clip-rule="evenodd" />
+    </svg>
+    {{ selectedFile.name }}
+    <button (click)="removeFile()" class="ml-2 text-red-500 hover:text-red-700">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fd5d5d" viewBox="0 0 256 256"><path d="M216,48H180V36A28,28,0,0,0,152,8H104A28,28,0,0,0,76,36V48H40a12,12,0,0,0,0,24h4V208a20,20,0,0,0,20,20H192a20,20,0,0,0,20-20V72h4a12,12,0,0,0,0-24ZM100,36a4,4,0,0,1,4-4h48a4,4,0,0,1,4,4V48H100Zm88,168H68V72H188ZM116,104v64a12,12,0,0,1-24,0V104a12,12,0,0,1,24,0Zm48,0v64a12,12,0,0,1-24,0V104a12,12,0,0,1,24,0Z"></path></svg>
+    </button>
+  </div>
+</div>
+
+<div class="mt-6">
+  <label class="block text-lg font-semibold mb-2">What would you like to know about this document?</label>
+  <input
+    [(ngModel)]="prompt"
+    placeholder="Ask specific questions about the document..."
+    class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+  />
+  <button
+    (click)="upload()"
+    class="w-full bg-emerald-400 hover:bg-emerald-500 text-white font-semibold py-2 rounded-lg flex items-center justify-center gap-2"
+  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ffffff" viewBox="0 0 256 256"><path d="M232.49,215.51,185,168a92.12,92.12,0,1,0-17,17l47.53,47.54a12,12,0,0,0,17-17ZM44,112a68,68,0,1,1,68,68A68.07,68.07,0,0,1,44,112Z"></path></svg>
+    Analyze Document
+  </button>
+</div>
+
+<div *ngIf="content" class="mt-8 border border-green-300 bg-green-50 rounded-md p-4 whitespace-pre-line">
+  <strong class="text-green-700">Response:</strong>
+  <div class="mt-2">{{ content }}</div>
+</div>
+
+<div *ngIf="error" class="mt-4 border border-red-300 bg-red-50 rounded-md p-4 text-red-700">
+  <strong>Error:</strong> {{ error }}
+</div>
+</div>

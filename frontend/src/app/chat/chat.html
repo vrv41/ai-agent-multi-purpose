@@ -1,0 +1,41 @@
+<div class="chat-container">
+ 
+  <div class="chat-messages p-4">
+    <!-- <div *ngFor="let msg of messages" class="message" [ngClass]="{'user-message': msg.startsWith('🧑‍💼'), 'ai-message': msg.startsWith('🤖')}">
+      {{ msg }}
+    </div> -->
+
+    <ul class="" *ngFor="let msg of messages;let last = last" >
+      <ng-container *ngIf="msg.userType==1; else userMessage" >
+    <li class="agent-side">
+      <span class="bot-icon px-1"></span>
+       <span class="msg-conatiner" *ngIf="!msg.isTyping">
+        <p>{{msg.message}}</p>
+        <span class="flex justify-end text-xs text-gray-400 mt-4">{{msg.timestamp|date:'mediumDate'}} {{msg.timestamp|date:'shortTime'}}</span>
+       </span> 
+       <span class="typing_icon" *ngIf="msg.isTyping && last">
+        <span class="dot"></span>
+      </span>
+      </li>
+</ng-container>
+
+
+<ng-template #userMessage>
+      <li class="user-side">
+         <span class="msg-conatiner">
+          <p>{{msg.message}} </p>
+          <span class="flex justify-end text-xs text-gray-400 mt-4">{{msg.timestamp|date:'mediumDate'}} {{msg.timestamp|date:'shortTime'}}</span>
+         </span> 
+         <span class="user-icon px-1"></span>
+        </li>
+      </ng-template>
+
+
+    </ul>
+  </div>
+  <div class="chat-input flex gap-2 w-full px-2">
+    <!-- <input type="file" id="fileInput" (change)="onFileChange($event)" accept=".pdf,.csv" /> -->
+    <input class="  w-full p-4 border-[1px] solid rounded-md focus:outline-none  border-gray-200" [formControl]="prompt" placeholder="Ask me anything..." (keyup.enter)="sendMessage()" />
+    <button class="px-4 py-1 rounded-md bg-blue-400 cursor-pointer hover:bg-blue-500" (click)="sendMessage()"><span><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M230.14,25.86a20,20,0,0,0-19.57-5.11l-.22.07L18.44,79a20,20,0,0,0-3.06,37.25L99,157l40.71,83.65a19.81,19.81,0,0,0,18,11.38c.57,0,1.15,0,1.73-.07A19.82,19.82,0,0,0,177,237.56L235.18,45.65a1.42,1.42,0,0,0,.07-.22A20,20,0,0,0,230.14,25.86ZM156.91,221.07l-34.37-70.64,46-45.95a12,12,0,0,0-17-17l-46,46L34.93,99.09,210,46Z"></path></svg></span></button>
+  </div>
+</div>
