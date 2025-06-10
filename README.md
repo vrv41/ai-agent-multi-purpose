@@ -1,6 +1,6 @@
-# 🧠 VRV AI – Smart Q&A and Document Analysis App
+# 🧠 VRV AI – Smart Q&A and Document Analysis App (Virtual Reasoning & Vision)
 
-**VRV AI** is a powerful AI-powered web application built to handle **general Q&A** and **document-based retrieval-augmented generation (RAG)**. It uses a modern tech stack, combining **Python, LangChain, Ollama**, and **Angular 20 with Tailwind CSS**. This app does **not store any user data in a database**, making it lightweight and privacy-friendly.
+**VRV AI** (Virtual Reasoning & Vision) is a powerful AI-powered web application built to handle **general Q&A** and **document-based retrieval-augmented generation (RAG)**. It uses a modern tech stack, combining **Python, LangChain, Ollama**, and **Angular 20 with Tailwind CSS**. This app does **not store any user data in a database**, making it lightweight and privacy-friendly.
 
 ---
 
@@ -35,65 +35,48 @@
 
 ## 📁 Project Structure
 
-/vrv-ai
-├── /frontend → Angular 20 + Tailwind app
-└── /backend → Python FastAPI + LangChain + Ollama
-
-yaml
-Copy
-Edit
+## /vrv-ai
+## ├── /frontend → Angular 20 + Tailwind app
+## └── /backend → Python FastAPI + LangChain + Ollama
 
 
----
 
 ## ⚙️ Getting Started
 
 ### 🖥️ Backend Setup
 
 1. **Install dependencies**
-   ```bash
+   
    cd backend
    pip install -r requirements.txt
 Start Ollama locally (make sure you have Ollama installed)
 
-bash
-Copy
-Edit
+
 ollama run llama3
 Run the FastAPI server
 
-bash
-Copy
-Edit
+
 uvicorn main:app --reload
 Ensure any file parsing or AI models are correctly configured in your main.py and file_parser.py.
 
 🌐 Frontend Setup
 Install Angular CLI (if not already)
 
-bash
-Copy
-Edit
+
 npm install -g @angular/cli
 Install dependencies
 
-bash
-Copy
-Edit
+
 cd frontend
 npm install
 Run the frontend app
 
-bash
-Copy
-Edit
+
 ng serve
 Access the app at: http://localhost:4200
 
 📦 Environment Variables (Optional)
 Add a .env in the backend folder for config like model selection or API keys if extended:
 
-env
-Copy
-Edit
+
 OLLAMA_MODEL=llama3
